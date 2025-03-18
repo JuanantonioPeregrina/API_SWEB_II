@@ -1,11 +1,12 @@
 openapi: 3.0.3
 info:
   title: API REST de Videojuegos
-  version: 0.1.0
-  description: API para gestionar videojuegos
+  version: 1.0.0
+  description: API para gestionar videojuegos, consolas y empresas
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:3000
     description: Servidor local de desarrollo
+
 paths:
   /videojuegos:
     get:
@@ -39,7 +40,7 @@ paths:
           description: No estamos autorizados
         "403":
           description: No tenemos permiso
-  
+
   /videojuegos/{id}:
     get:
       summary: Obtener información de un videojuego por ID
@@ -58,72 +59,108 @@ paths:
                 $ref: "#/components/schemas/Videojuego"
         "404":
           description: ID no válido
-    put:
-      summary: Actualizar un videojuego
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Videojuego"
-      responses:
-        "200":
-          description: Videojuego actualizado
-        "400":
-          description: JSON no válido
-        "401":
-          description: No estamos autorizados
-        "403":
-          description: No tenemos permiso
-        "404":
-          description: ID no válido
-    delete:
-      summary: Eliminar un videojuego
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: Videojuego eliminado
-        "401":
-          description: No estamos autorizados
-        "403":
-          description: No tenemos permiso
-        "404":
-          description: ID no válido
-  
-  /videojuegos/categorias:
+
+  /videojuegos/{id}/consolas:
     get:
-      summary: Filtrar videojuegos por categorías
+      summary: Obtener consolas en las que está disponible un videojuego
       parameters:
-        - name: PEGI
-          in: query
+        - name: id
+          in: path
+          required: true
           schema:
-            type: string
-        - name: Temática
-          in: query
+            type: integer
+      responses:
+        "200":
+          description: Consolas disponibles para el videojuego
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Consola"
+
+  /videojuegos/{id}/empresa:
+    get:
+      summary: Obtener la empresa desarrolladora de un videojuego
+      parameters:
+        - name: id
+          in: path
+          required: true
           schema:
-            type: string
-        - name: Empresa
-          in: query
+            type: integer
+      responses:
+        "200":
+          description: Empresa desarrolladora del videojuego
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empresa"
+
+  /consolas:
+    get:
+      summary: Obtener lista de consolas
+      description: Devuelve la lista de consolas registradas
+      responses:
+        "200":
+          description: Lista de consolas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Consola"
+
+  /consolas/{id}:
+    get:
+      summary: Obtener información de una consola por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
           schema:
             type: string
       responses:
-        "201":
-          description: Videojuegos filtrados con éxito
-        "400":
-          description: JSON no válido
-        "403":
-          description: No tenemos permiso
+        "200":
+          description: Información de la consola
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Consola"
+        "404":
+          description: ID no válido
+
+  /empresas:
+    get:
+      summary: Obtener lista de empresas desarrolladoras de videojuegos
+      responses:
+        "200":
+          description: Lista de empresas desarrolladoras
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Empresa"
+
+  /empresas/{id}:
+    get:
+      summary: Obtener información de una empresa desarrolladora
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Información de la empresa
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empresa"
+        "404":
+          description: ID no válido
+
 components:
   schemas:
     Videojuego:
@@ -151,4 +188,20 @@ components:
         multijugador:
           type: boolean
         idioma:
+          type: string
+
+    Consola:
+      type: object
+      properties:
+        id:
+          type: string
+        nombre:
+          type: string
+
+    Empresa:
+      type: object
+      properties:
+        id:
+          type: string
+        nombre:
           type: string
