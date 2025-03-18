@@ -1,0 +1,154 @@
+openapi: 3.0.3
+info:
+  title: API REST de Videojuegos
+  version: 0.1.0
+  description: API para gestionar videojuegos
+servers:
+  - url: http://localhost:8080
+    description: Servidor local de desarrollo
+paths:
+  /videojuegos:
+    get:
+      summary: Obtener lista de videojuegos
+      description: Devuelve la lista de videojuegos con posibilidad de filtrado
+      responses:
+        "200":
+          description: Lista de videojuegos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Videojuego"
+        "400":
+          description: Algún parámetro no es válido
+    post:
+      summary: Crear un videojuego
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Videojuego"
+      responses:
+        "201":
+          description: Videojuego creado con éxito
+        "400":
+          description: JSON no válido
+        "401":
+          description: No estamos autorizados
+        "403":
+          description: No tenemos permiso
+  
+  /videojuegos/{id}:
+    get:
+      summary: Obtener información de un videojuego por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Información del videojuego
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Videojuego"
+        "404":
+          description: ID no válido
+    put:
+      summary: Actualizar un videojuego
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Videojuego"
+      responses:
+        "200":
+          description: Videojuego actualizado
+        "400":
+          description: JSON no válido
+        "401":
+          description: No estamos autorizados
+        "403":
+          description: No tenemos permiso
+        "404":
+          description: ID no válido
+    delete:
+      summary: Eliminar un videojuego
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Videojuego eliminado
+        "401":
+          description: No estamos autorizados
+        "403":
+          description: No tenemos permiso
+        "404":
+          description: ID no válido
+  
+  /videojuegos/categorias:
+    get:
+      summary: Filtrar videojuegos por categorías
+      parameters:
+        - name: PEGI
+          in: query
+          schema:
+            type: string
+        - name: Temática
+          in: query
+          schema:
+            type: string
+        - name: Empresa
+          in: query
+          schema:
+            type: string
+      responses:
+        "201":
+          description: Videojuegos filtrados con éxito
+        "400":
+          description: JSON no válido
+        "403":
+          description: No tenemos permiso
+components:
+  schemas:
+    Videojuego:
+      type: object
+      properties:
+        id:
+          type: integer
+        nombre:
+          type: string
+        fecha_lanzamiento:
+          type: string
+          format: date
+        dispositivo:
+          type: string
+        precio:
+          type: number
+        version:
+          type: string
+        PEGI:
+          type: string
+        descripcion:
+          type: string
+        empresa:
+          type: string
+        multijugador:
+          type: boolean
+        idioma:
+          type: string
