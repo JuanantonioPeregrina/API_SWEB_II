@@ -11,18 +11,9 @@ paths:
   /videojuegos:
     get:
       summary: Obtener lista de videojuegos
-      description: Devuelve la lista de videojuegos con posibilidad de filtrado
       responses:
         "200":
           description: Lista de videojuegos
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Videojuego"
-        "400":
-          description: Algún parámetro no es válido
     post:
       summary: Crear un videojuego
       requestBody:
@@ -34,12 +25,6 @@ paths:
       responses:
         "201":
           description: Videojuego creado con éxito
-        "400":
-          description: JSON no válido
-        "401":
-          description: No estamos autorizados
-        "403":
-          description: No tenemos permiso
 
   /videojuegos/{id}:
     get:
@@ -53,16 +38,25 @@ paths:
       responses:
         "200":
           description: Información del videojuego
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Videojuego"
-        "404":
-          description: ID no válido
-
-  /videojuegos/{id}/consolas:
-    get:
-      summary: Obtener consolas en las que está disponible un videojuego
+    put:
+      summary: Actualizar un videojuego
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Videojuego"
+      responses:
+        "200":
+          description: Videojuego actualizado
+    delete:
+      summary: Eliminar un videojuego
       parameters:
         - name: id
           in: path
@@ -71,48 +65,29 @@ paths:
             type: integer
       responses:
         "200":
-          description: Consolas disponibles para el videojuego
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Consola"
-
-  /videojuegos/{id}/empresa:
-    get:
-      summary: Obtener la empresa desarrolladora de un videojuego
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: Empresa desarrolladora del videojuego
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Empresa"
+          description: Videojuego eliminado
 
   /consolas:
     get:
       summary: Obtener lista de consolas
-      description: Devuelve la lista de consolas registradas
       responses:
         "200":
           description: Lista de consolas
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Consola"
+    post:
+      summary: Crear una consola
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Consola"
+      responses:
+        "201":
+          description: Consola creada con éxito
 
   /consolas/{id}:
     get:
-      summary: Obtener información de una consola por ID
+      summary: Obtener información de una consola
       parameters:
         - name: id
           in: path
@@ -122,29 +97,124 @@ paths:
       responses:
         "200":
           description: Información de la consola
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Consola"
-        "404":
-          description: ID no válido
+    put:
+      summary: Actualizar una consola
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Consola"
+      responses:
+        "200":
+          description: Consola actualizada
+    delete:
+      summary: Eliminar una consola
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Consola eliminada
+
+  /consolas/{id}/videojuegos:
+    get:
+      summary: Obtener videojuegos disponibles en una consola
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Lista de videojuegos disponibles en la consola
+    post:
+      summary: Agregar un videojuego a una consola
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Videojuego"
+      responses:
+        "201":
+          description: Videojuego agregado a la consola
+    put:
+      summary: Actualizar un videojuego en una consola
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: videojuegoId
+          in: query
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Videojuego"
+      responses:
+        "200":
+          description: Videojuego actualizado en la consola
+    delete:
+      summary: Eliminar un videojuego de una consola
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: videojuegoId
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Videojuego eliminado de la consola
 
   /empresas:
     get:
-      summary: Obtener lista de empresas desarrolladoras de videojuegos
+      summary: Obtener lista de empresas desarrolladoras
       responses:
         "200":
-          description: Lista de empresas desarrolladoras
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Empresa"
+          description: Lista de empresas
+    post:
+      summary: Crear una empresa
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Empresa"
+      responses:
+        "201":
+          description: Empresa creada con éxito
 
   /empresas/{id}:
     get:
-      summary: Obtener información de una empresa desarrolladora
+      summary: Obtener información de una empresa
       parameters:
         - name: id
           in: path
@@ -154,12 +224,102 @@ paths:
       responses:
         "200":
           description: Información de la empresa
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Empresa"
-        "404":
-          description: ID no válido
+    put:
+      summary: Actualizar una empresa
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Empresa"
+      responses:
+        "200":
+          description: Empresa actualizada
+    delete:
+      summary: Eliminar una empresa
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Empresa eliminada
+
+  /empresas/{id}/videojuegos:
+    get:
+      summary: Obtener videojuegos desarrollados por una empresa
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Lista de videojuegos desarrollados por la empresa
+    post:
+      summary: Agregar un videojuego a la empresa
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Videojuego"
+      responses:
+        "201":
+          description: Videojuego agregado a la empresa
+    put:
+      summary: Actualizar un videojuego de la empresa
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: videojuegoId
+          in: query
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Videojuego"
+      responses:
+        "200":
+          description: Videojuego actualizado para la empresa
+    delete:
+      summary: Eliminar un videojuego de la empresa
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: videojuegoId
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Videojuego eliminado de la empresa
 
 components:
   schemas:
@@ -169,25 +329,6 @@ components:
         id:
           type: integer
         nombre:
-          type: string
-        fecha_lanzamiento:
-          type: string
-          format: date
-        dispositivo:
-          type: string
-        precio:
-          type: number
-        version:
-          type: string
-        PEGI:
-          type: string
-        descripcion:
-          type: string
-        empresa:
-          type: string
-        multijugador:
-          type: boolean
-        idioma:
           type: string
 
     Consola:
