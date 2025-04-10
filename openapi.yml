@@ -34,7 +34,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         "200":
           description: Información del videojuego
@@ -45,7 +45,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       requestBody:
         required: true
         content:
@@ -62,7 +62,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         "200":
           description: Videojuego eliminado
@@ -167,7 +167,7 @@ paths:
           in: query
           required: true
           schema:
-            type: integer
+            type: string
       requestBody:
         required: true
         content:
@@ -189,7 +189,7 @@ paths:
           in: query
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         "200":
           description: Videojuego eliminado de la consola
@@ -294,7 +294,7 @@ paths:
           in: query
           required: true
           schema:
-            type: integer
+            type: string
       requestBody:
         required: true
         content:
@@ -316,7 +316,7 @@ paths:
           in: query
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         "200":
           description: Videojuego eliminado de la empresa
@@ -326,23 +326,88 @@ components:
     Videojuego:
       type: object
       properties:
-        id:
-          type: integer
         nombre:
+          type: string
+        dispositivo:
+          type: string
+        fecha_lanzamiento:
+          type: string
+          format: date
+        empresa:
+          type: string
+        PEGI:
+          type: integer
+        precio:
+          type: number
+        multijugador:
+          type: boolean
+        idioma:
+          type: string
+        descripcion:
+          type: string
+        version:
           type: string
 
     Consola:
-      type: object
+       type: object
       properties:
-        id:
-          type: string
         nombre:
+          type: string
+        almacenamiento:
+          type: string
+        precio:
+          type: number
+        graficos:
+          type: string
+        fecha_lanzamiento:
+          type: string
+          format: date
+        unidades_disponibles:
+          type: integer
+        sitio_web:
+          type: string
+        videojuegos_compatibles:
+          type: array
+          items:
+            type: string
+        procesador:
+          type: string
+        memoria_RAM:
+          type: string
+        peso:
+          type: number
+        tipo:
           type: string
 
     Empresa:
-      type: object
+     type: object
       properties:
-        id:
-          type: string
         nombre:
           type: string
+        CIF:
+          type: string
+        descripcion:
+          type: string
+        ubicacion:
+          type: string
+        numero_empleados:
+          type: integer
+        numero_juegos:
+          type: integer
+        fecha_creacion:
+          type: string
+          format: date
+        ingresos_anuales:
+          type: string
+        sitio_web:
+          type: string
+        consolas_fabricadas:
+          type: array
+          items:
+            type: string
+        consolas_compatibles:
+          type: array
+          items:
+            type: string
+        desarrolladora:
+          type: boolean
