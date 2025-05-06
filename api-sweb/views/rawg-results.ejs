@@ -1,0 +1,15 @@
+<h2>Buscar juegos</h2>
+<form method="GET" action="/rawg/search">
+  <input type="text" name="query" placeholder="Buscar juego..." required />
+  <button type="submit">Buscar</button>
+</form>
+
+<ul>
+  <% games.forEach(game => { %>
+    <li>
+      <strong><%= game.name %></strong><br/>
+      <img src="<%= game.background_image %>" alt="image" width="200" /><br/>
+      Fecha: <%= game.released %> | Rating: <%= game.rating %>
+    </li>
+  <% }) %>
+</ul>
