@@ -1,0 +1,23 @@
+<consolas>
+  <consola><nombre>PlayStation 5</nombre><slug>ps5</slug></consola>
+  <consola><nombre>Xbox Series X</nombre><slug>xbox-series-x</slug></consola>
+  <consola><nombre>Nintendo Switch</nombre><slug>switch</slug></consola>
+  <consola><nombre>PlayStation 4</nombre><slug>ps4</slug></consola>
+  <consola><nombre>Xbox One</nombre><slug>xbox-one</slug></consola>
+  <consola><nombre>Nintendo 3DS</nombre><slug>3ds</slug></consola>
+  <consola><nombre>PlayStation 3</nombre><slug>ps3</slug></consola>
+  <consola><nombre>Xbox 360</nombre><slug>xbox-360</slug></consola>
+  <consola><nombre>Wii U</nombre><slug>wii-u</slug></consola>
+  <consola><nombre>Wii</nombre><slug>wii</slug></consola>
+  <consola><nombre>PlayStation Vita</nombre><slug>psvita</slug></consola>
+  <consola><nombre>PlayStation Portable</nombre><slug>psp</slug></consola>
+  <consola><nombre>Nintendo DS</nombre><slug>nds</slug></consola>
+  <consola><nombre>Game Boy Advance</nombre><slug>gba</slug></consola>
+  <consola><nombre>Game Boy</nombre><slug>gb</slug></consola>
+  <consola><nombre>Nintendo 64</nombre><slug>n64</slug></consola>
+  <consola><nombre>Super Nintendo</nombre><slug>snes</slug></consola>
+  <consola><nombre>Nintendo Entertainment System</nombre><slug>nes</slug></consola>
+  <consola><nombre>Sega Genesis</nombre><slug>genesis</slug></consola>
+  <consola><nombre>Sega Dreamcast</nombre><slug>dreamcast</slug></consola>
+  <consola><nombre>PC</nombre><slug>pc</slug></consola>
+</consolas>

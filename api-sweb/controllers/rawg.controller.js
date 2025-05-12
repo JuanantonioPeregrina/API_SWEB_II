@@ -31,13 +31,17 @@ exports.searchAndSyncGames = async (req, res) => {
           }))
         : null;
 
+        const consolas = games.platforms?.length > 0
+    ? games.platforms.map(p => p.platform.slug)
+    : [];
+
       const regex = new RegExp(`^${name}$`, 'i');
       const existingGame = await db.collection('videojuegos').findOne({ nombre: { $regex: regex } });
 
       if (existingGame) {
         await db.collection('videojuegos').updateOne(
           { _id: existingGame._id },
-          { $set: { tiendas } }
+          { $set: { tiendas, consolas } }
         );
       } else {
         await db.collection('videojuegos').insertOne({ nombre: name, tiendas });
