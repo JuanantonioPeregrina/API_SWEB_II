@@ -36,15 +36,15 @@ exports.searchAndSyncGames = async (req, res) => {
     : [];
 
       const regex = new RegExp(`^${name}$`, 'i');
-      const existingGame = await db.collection('videojuegos').findOne({ nombre: { $regex: regex } });
+      const existingGame = await db.collection('rawg').findOne({ nombre: { $regex: regex } });
 
       if (existingGame) {
-        await db.collection('videojuegos').updateOne(
+        await db.collection('rawg').updateOne(
           { _id: existingGame._id },
           { $set: { tiendas, consolas } }
         );
       } else {
-        await db.collection('videojuegos').insertOne({ nombre: name, tiendas });
+        await db.collection('rawg').insertOne({ nombre: name, tiendas });
         notFoundGames.push(name);
       }
     }

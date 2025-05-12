@@ -11,6 +11,8 @@ const swaggerDocument = YAML.load(path.join(__dirname, '../openapi.yml'));
 var indexRouter = require('./routes/index');
 const consolasRouter = require('./routes/consolas');
 const rawgRoutes = require('./routes/rawg');
+var videojuegosRouter = require('./routes/videojuegos');
+var empresasRouter = require('./routes/empresas');
 
 var app = express();
 const { connectDB } = require('./db/db');
@@ -29,6 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/', consolasRouter);
 app.use('/', rawgRoutes);
+app.use('/', videojuegosRouter);
+app.use('/', empresasRouter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // catch 404 and forward to error handler
