@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const consolasCtrl = require('../controllers/consolas.controller');
 
-router.get('/consolas/cargar-desde-xml', consolasCtrl.getConsolasDesdeXML);
-router.get('/consolas/:slug/juegos', consolasCtrl.getJuegosPorConsola);
+router.get('/consolas/xml', consolasCtrl.getConsolasDesdeXML);
 
 module.exports = router;

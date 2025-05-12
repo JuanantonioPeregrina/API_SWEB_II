@@ -30,22 +30,3 @@ exports.getConsolasDesdeXML = async (req, res) => {
   }
 
 };
-
-exports.getJuegosPorConsola = async (req, res) => {
-    const db = getDB();
-    const slug = req.params.slug;
-  
-    try {
-      const juegos = await db.collection('videojuegos').find({
-        consolas: slug
-      }).toArray();
-  
-      if (juegos.length === 0) {
-        return res.status(404).json({ message: 'No se encontraron juegos para esta consola.' });
-      }
-  
-      res.status(200).json(juegos);
-    } catch (err) {
-      res.status(500).json({ error: 'Error al buscar juegos por consola.', detalles: err.message });
-    }
-  };
