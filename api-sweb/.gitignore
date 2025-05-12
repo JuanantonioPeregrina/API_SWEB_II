@@ -1,0 +1,44 @@
+# node_modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.*
+
+# MongoDB local data (por si se usa localmente)
+data/db/
+dump/
+
+# Editor settings
+.vscode/
+.idea/
+*.sublime-workspace
+*.swp
+
+# Compilación / build / cobertura
+dist/
+build/
+coverage/
+.cache/
+
+# Optional npm
+.npm/
+
+# Archivos de exportación
+*.tgz
+
+# Dataset o scripts generados
+data/*.json
+scripts/*.dump
+`
