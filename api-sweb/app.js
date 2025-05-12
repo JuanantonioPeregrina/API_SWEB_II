@@ -10,7 +10,7 @@ const rawgRoutes = require('./routes/rawg');
 
 
 var app = express();
-const { connectDB } = require('./db');
+const { connectDB } = require('./db/db');
 connectDB().catch(err => console.error('Error al conectar MongoDB:', err));
 
 // view engine setup
