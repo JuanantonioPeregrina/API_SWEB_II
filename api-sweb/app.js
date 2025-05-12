@@ -7,7 +7,6 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 const consolasRouter = require('./routes/consolas');
 const rawgRoutes = require('./routes/rawg');
-const juegosRoutes = require('./routes/juegos');
 
 var app = express();
 const { connectDB } = require('./db/db');
@@ -26,7 +25,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/', consolasRouter);
 app.use('/', rawgRoutes);
-app.use('/', juegosRoutes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

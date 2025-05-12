@@ -13,6 +13,8 @@
     "http-errors": "~1.6.3",
     "mongodb": "^6.16.0",
     "morgan": "~1.9.1",
-    "xml2js": "^0.6.2"
+    "swagger-ui-express": "^5.0.1",
+    "xml2js": "^0.6.2",
+    "yamljs": "^0.3.0"
   }
 }
