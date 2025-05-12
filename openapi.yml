@@ -350,7 +350,7 @@ components:
 
     Consola:
        type: object
-      properties:
+       properties:
         nombre:
           type: string
         almacenamiento:
