@@ -306,7 +306,7 @@ paths:
       responses:
         "200":
           description: Lista de videojuegos desarrollados por la empresa
-     post:
+    post:
       summary: Agregar un videojuego a la empresa
       parameters:
         - name: id
