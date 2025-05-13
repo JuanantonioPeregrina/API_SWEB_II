@@ -211,7 +211,7 @@ Este proyecto está licenciado bajo:
 
 > Proyecto realizado con fines académicos en el contexto de la asignatura **Sistemas Web II** del Grado en Ingeniería Informática.
 
-```
+
 
 
 
