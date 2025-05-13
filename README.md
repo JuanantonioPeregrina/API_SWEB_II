@@ -50,7 +50,6 @@ npm run load-data
 
 ## Estructura del proyecto
 
-```
 api-sweb/
 ├── bin/                    # Arranque del servidor
 ├── controllers/            # Lógica de negocio
@@ -65,7 +64,9 @@ api-sweb/
 ├── package.json            # Dependencias y scripts npm
 ├── vgchartz-2024.json      # Dataset inicial (1000+ videojuegos)
 ├── README.md               # Este documento
-```
+
+
+
 
 ---
 
