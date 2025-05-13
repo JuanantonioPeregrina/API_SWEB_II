@@ -114,7 +114,28 @@ exports.updateVideojuego = async (req, res) => {
 };
 
 exports.removeVideojuego = async (req, res) => {
-  const { videojuegoId } = req.query;
-  const result = await getDB().collection('videojuegos').deleteOne({ _id: new ObjectId(videojuegoId), empresaId: req.params.id });
-  res.json(result);
+  const { empresaId, consolaId } = req.params;
+
+  try {
+    const db = getDB();
+
+    const consola = await db.collection('consolas').findOne({ _id: new ObjectId(consolaId) });
+    if (!consola) {
+      return res.status(404).json({ error: 'Consola no encontrada' });
+    }
+
+    const result = await db.collection('empresas').updateOne(
+      { _id: new ObjectId(empresaId) },
+      { $pull: { consolas_compatibles: consola.nombre } }
+    );
+
+    res.status(201).json({
+      message: `Consola "${consola.nombre}" eliminada de la empresa`,
+      result
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: 'Error al eliminar la consola', detalle: err.message });
+  }
+
 };

@@ -10,6 +10,6 @@ router.delete('/empresas/:id', empresasCtrl.remove);
 router.get('/empresas/:id/videojuegos', empresasCtrl.getVideojuegos);
 router.post('/empresas/:empresaId/consolas/:consolaId', empresasCtrl.addVideojuego);
 router.put('/empresas/:id/videojuegos', empresasCtrl.updateVideojuego);
-router.delete('/empresas/:id/videojuegos', empresasCtrl.removeVideojuego);
+router.delete('/empresas/:empresaId/consolas/:consolaId', empresasCtrl.removeVideojuego);
 
 module.exports = router;

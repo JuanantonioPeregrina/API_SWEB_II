@@ -121,7 +121,6 @@ exports.addVideojuego = async (req, res) => {
       return res.status(404).json({ error: 'Videojuego no encontrado' });
     }
 
-    // 2. Añadir el nombre del videojuego al array de la consola
     const result = await db.collection('consolas').updateOne(
       { _id: new ObjectId(consolaId) },
       { $addToSet: { videojuegos_compatibles: juego.nombre } }
@@ -148,7 +147,28 @@ exports.updateVideojuego = async (req, res) => {
 };
 
 exports.removeVideojuego = async (req, res) => {
-  const { videojuegoId } = req.query;
-  const result = await getDB().collection('videojuegos').deleteOne({ _id: new ObjectId(videojuegoId), consolaId: req.params.id });
-  res.json(result);
+  const { consolaId, videojuegoId } = req.params;
+
+  try {
+    const db = getDB();
+
+    const juego = await db.collection('videojuegos').findOne({ _id: new ObjectId(videojuegoId) });
+    if (!juego) {
+      return res.status(404).json({ error: 'Videojuego no encontrado' });
+    }
+
+    const result = await db.collection('consolas').updateOne(
+      { _id: new ObjectId(consolaId) },
+      { $pull: { videojuegos_compatibles: juego.nombre } }
+    );
+
+    res.status(201).json({
+      message: `Videojuego "${juego.nombre}" eliminado de la consola`,
+      result
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: 'Error al eliminar el videojuego', detalle: err.message });
+  }
+  
 };

@@ -212,21 +212,25 @@ paths:
         "200":
           description: Videojuego actualizado en la consola
     delete:
-      summary: Eliminar un videojuego de una consola
+      summary: Eliminar nombre de un videojuego a una consola usando sus IDs
       parameters:
-        - name: id
+        - name: consolaId
           in: path
           required: true
           schema:
             type: string
         - name: videojuegoId
-          in: query
+          in: path
           required: true
           schema:
             type: string
       responses:
-        "200":
-          description: Videojuego eliminado de la consola
+        "201":
+          description: Videojuego eliminado correctamente
+        "404":
+          description: Videojuego o consola no encontrada
+        "500":
+          description: Error del servidor
   /empresas:
     get:
       summary: Obtener lista de empresas paginada
@@ -354,21 +358,26 @@ paths:
         "200":
           description: Videojuego actualizado para la empresa
     delete:
-      summary: Eliminar un videojuego de la empresa
+      post:
+      summary: Eliminar nombre de una consola a una empresa usando sus IDs
       parameters:
-        - name: id
+        - name: empresaId
           in: path
           required: true
           schema:
             type: string
-        - name: videojuegoId
-          in: query
+        - name: consolaId
+          in: path
           required: true
           schema:
             type: string
       responses:
-        "200":
-          description: Videojuego eliminado de la empresa
+        "201":
+          description: Consola eliminada correctamente
+        "404":
+          description: Empresa o consola no encontrada
+        "500":
+          description: Error del servidor
   /rawg/search:
     get:
       summary: Buscar videojuegos en la API externa RAWG
