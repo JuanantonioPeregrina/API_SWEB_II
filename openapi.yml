@@ -251,62 +251,7 @@ paths:
       responses:
         "200":
           description: Lista de videojuegos desarrollados por la empresa
-    post:
-      summary: Agregar un videojuego a la empresa
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Videojuego"
-      responses:
-        "201":
-          description: Videojuego agregado a la empresa
-    put:
-      summary: Actualizar un videojuego de la empresa
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: videojuegoId
-          in: query
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Videojuego"
-      responses:
-        "200":
-          description: Videojuego actualizado para la empresa
-    delete:
-      summary: Eliminar un videojuego de la empresa
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: videojuegoId
-          in: query
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Videojuego eliminado de la empresa
-
+    
 components:
   schemas:
     Videojuego:

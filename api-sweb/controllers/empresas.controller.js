@@ -48,27 +48,33 @@ exports.remove = async (req, res) => {
 };
 
 exports.getVideojuegos = async (req, res) => {
-  const videojuegos = await getDB().collection('videojuegos').find({ empresaId: req.params.id }).toArray();
-  res.json(videojuegos);
-};
+  const db = getDB();
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 20;
+  const skip = (page - 1) * limit;
+  try {
+    const empresa = await db.collection('empresas').findOne({ _id: new ObjectId(req.params.id) });
 
-exports.addVideojuego = async (req, res) => {
-  const videojuego = { ...req.body, empresaId: req.params.id };
-  const result = await getDB().collection('videojuegos').insertOne(videojuego);
-  res.status(201).json(result);
-};
+    if (!empresa) {
+      return res.status(404).json({ error: 'Empresa no encontrada' });
+    }
+    const total = await db.collection('videojuegos').countDocuments({ empresa: empresa.nombre });
+    console.log(total)
+    const juegos = await db.collection('videojuegos')
+      .find({ empresa: empresa.nombre })
+      .skip(skip)
+      .limit(limit)
+      .toArray();
 
-exports.updateVideojuego = async (req, res) => {
-  const { videojuegoId } = req.query;
-  const result = await getDB().collection('videojuegos').updateOne(
-    { _id: new ObjectId(videojuegoId), empresaId: req.params.id },
-    { $set: req.body }
-  );
-  res.json(result);
-};
+    res.status(200).json({
+      page,
+      limit,
+      total,
+      totalPages: Math.ceil(total / limit),
+      data: juegos
+    });
 
-exports.removeVideojuego = async (req, res) => {
-  const { videojuegoId } = req.query;
-  const result = await getDB().collection('videojuegos').deleteOne({ _id: new ObjectId(videojuegoId), empresaId: req.params.id });
-  res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: 'Error al obtener las empresas', detalle: err.message });
+  }
 };
