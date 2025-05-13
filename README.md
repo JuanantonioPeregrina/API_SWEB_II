@@ -36,7 +36,17 @@ Para el acceso a la API RAWG es necesario configurar la clave de API.
 
 Crear un archivo `.env` en la raíz del proyecto con la siguiente variable:
 
+## 🚀 Consideraciones de despliegue
 
+Este proyecto está pensado para ser ejecutado en **entornos locales de desarrollo**.
+
+Para un reinicio limpio de la base de datos:
+1. Parar MongoDB.
+2. Eliminar manualmente los archivos de la carpeta de datos (`--dbpath`).
+3. Volver a cargar el dataset con:
+
+```bash
+npm run load-data
 
 ## Estructura del proyecto
 
