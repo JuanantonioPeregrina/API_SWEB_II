@@ -105,12 +105,40 @@ exports.addVideojuego = async (req, res) => {
 };
 
 exports.updateVideojuego = async (req, res) => {
-  const { videojuegoId } = req.query;
-  const result = await getDB().collection('videojuegos').updateOne(
-    { _id: new ObjectId(videojuegoId), empresaId: req.params.id },
-    { $set: req.body }
-  );
-  res.json(result);
+  const { empresaId, consolaOldId, consolaId } = req.params;
+
+  try {
+    const db = getDB();
+    console.log(empresaId, consolaOldId, consolaId)
+    if (!ObjectId.isValid(empresaId) || !ObjectId.isValid(consolaOldId) || !ObjectId.isValid(consolaId)) {
+      return res.status(400).json({ error: 'Uno o más IDs no son válidos' });
+    }
+
+    const consolaOld = await db.collection('consolas').findOne({ _id: new ObjectId(consolaOldId) });
+    const consolaNew = await db.collection('consolas').findOne({ _id: new ObjectId(consolaId) });
+
+    if (!consolaOld || !consolaNew) {
+      return res.status(404).json({ error: 'Consola antigua o nueva no encontrada' });
+    }
+
+    await db.collection('empresas').updateOne(
+      { _id: new ObjectId(empresaId) },
+      { $pull: { consolas_compatibles: consolaOld.nombre } }
+    );
+    
+    const result = await db.collection('empresas').updateOne(
+      { _id: new ObjectId(empresaId) },
+      { $addToSet: { consolas_compatibles: consolaNew.nombre } }
+    );
+
+    res.status(201).json({
+      message: `Se reemplazó "${consolaOld.nombre}" por "${consolaNew.nombre}" en la empresa.`,
+      result
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: 'Error al actualizar la consola', detalle: err.message });
+  }
 };
 
 exports.removeVideojuego = async (req, res) => {

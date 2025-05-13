@@ -138,12 +138,40 @@ exports.addVideojuego = async (req, res) => {
 
 
 exports.updateVideojuego = async (req, res) => {
-  const { videojuegoId } = req.query;
-  const result = await getDB().collection('videojuegos').updateOne(
-    { _id: new ObjectId(videojuegoId), consolaId: req.params.id },
-    { $set: req.body }
-  );
-  res.json(result);
+  const { consolaId, videojuegoOldId, videojuegoId } = req.params;
+
+  try {
+    const db = getDB();
+
+    if (!ObjectId.isValid(consolaId) || !ObjectId.isValid(videojuegoId) || !ObjectId.isValid(videojuegoOldId)) {
+      return res.status(400).json({ error: 'Uno o más IDs no son válidos' });
+    }
+
+    const videojuegoOld = await db.collection('videojuegos').findOne({ _id: new ObjectId(videojuegoOldId) });
+    const videojuegoNew = await db.collection('videojuegos').findOne({ _id: new ObjectId(videojuegoId) });
+
+    if (!videojuegoOld || !videojuegoNew) {
+      return res.status(404).json({ error: 'Videojuego antiguo o nuevo no encontrado' });
+    }
+
+    await db.collection('consolas').updateOne(
+      { _id: new ObjectId(consolaId) },
+      { $pull: { videojuegos_compatibles: videojuegoOld.nombre } }
+    );
+    
+    const result = await db.collection('consolas').updateOne(
+      { _id: new ObjectId(consolaId) },
+      { $addToSet: { videojuegos_compatibles: videojuegoNew.nombre } }
+    );
+
+    res.status(201).json({
+      message: `Se reemplazó "${videojuegoOld.nombre}" por "${videojuegoNew.nombre}" en la consola.`,
+      result
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: 'Error al actualizar el videojuego', detalle: err.message });
+  }
 };
 
 exports.removeVideojuego = async (req, res) => {
