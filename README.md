@@ -1,10 +1,4 @@
-Perfecto, te voy a corregir el README respetando todo lo que tú has puesto, pero arreglando los errores de formato para que en **VSCode, GitHub o cualquier visor Markdown se vea perfecto**.
 
-Aquí lo tienes corregido y limpio para copiar y pegar:
-
----
-
-```markdown
 # API REST de Videojuegos
 
 ## Descripción
