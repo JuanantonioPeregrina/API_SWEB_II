@@ -9,6 +9,7 @@ async function connectDB() {
   await client.connect();
   db = client.db(dbName);
   console.log('Conectado a MongoDB');
+  return db;
 }
 
 function getDB() {
