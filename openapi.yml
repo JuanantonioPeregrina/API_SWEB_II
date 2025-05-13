@@ -6,7 +6,6 @@ info:
 servers:
   - url: http://localhost:3000
     description: Servidor local de desarrollo
-
 paths:
   /videojuegos:
     get:
@@ -38,7 +37,6 @@ paths:
       responses:
         "201":
           description: Videojuego creado con éxito
-
   /videojuegos/{id}:
     get:
       summary: Obtener información de un videojuego por ID
@@ -79,10 +77,22 @@ paths:
       responses:
         "200":
           description: Videojuego eliminado
-
   /consolas:
     get:
-      summary: Obtener lista de consolas
+      summary: Obtener lista de consolas paginada
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          description: Número de página
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 10
+          description: Cantidad de resultados por página
       responses:
         "200":
           description: Lista de consolas
@@ -97,7 +107,6 @@ paths:
       responses:
         "201":
           description: Consola creada con éxito
-
   /consolas/{id}:
     get:
       summary: Obtener información de una consola
@@ -138,7 +147,6 @@ paths:
       responses:
         "200":
           description: Consola eliminada
-
   /consolas/{id}/videojuegos:
     get:
       summary: Obtener videojuegos disponibles en una consola
@@ -206,10 +214,22 @@ paths:
       responses:
         "200":
           description: Videojuego eliminado de la consola
-
   /empresas:
     get:
-      summary: Obtener lista de empresas desarrolladoras
+      summary: Obtener lista de empresas paginada
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          description: Número de página
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 20
+          description: Cantidad de resultados por página
       responses:
         "200":
           description: Lista de empresas
@@ -224,7 +244,6 @@ paths:
       responses:
         "201":
           description: Empresa creada con éxito
-
   /empresas/{id}:
     get:
       summary: Obtener información de una empresa
@@ -393,7 +412,7 @@ components:
           type: string
 
     Empresa:
-     type: object
+      type: object
       properties:
         nombre:
           type: string
