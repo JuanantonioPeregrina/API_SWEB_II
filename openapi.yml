@@ -168,61 +168,6 @@ paths:
       responses:
         "200":
           description: Lista de videojuegos disponibles en la consola
-    post:
-      summary: Agregar un videojuego a una consola
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Videojuego"
-      responses:
-        "201":
-          description: Videojuego agregado a la consola
-    put:
-      summary: Actualizar un videojuego en una consola
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: videojuegoId
-          in: query
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Videojuego"
-      responses:
-        "200":
-          description: Videojuego actualizado en la consola
-    delete:
-      summary: Eliminar un videojuego de una consola
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: videojuegoId
-          in: query
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Videojuego eliminado de la consola
   /empresas:
     get:
       summary: Obtener lista de empresas paginada

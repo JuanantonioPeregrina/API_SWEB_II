@@ -9,8 +9,5 @@ router.get('/consolas/:id', consolasCtrl.getById);
 router.put('/consolas/:id', consolasCtrl.update);
 router.delete('/consolas/:id', consolasCtrl.remove);
 router.get('/consolas/:id/videojuegos', consolasCtrl.getVideojuegos);
-router.post('/consolas/:id/videojuegos', consolasCtrl.addVideojuego);
-router.put('/consolas/:id/videojuegos', consolasCtrl.updateVideojuego);
-router.delete('/consolas/:id/videojuegos', consolasCtrl.removeVideojuego);
 
 module.exports = router;

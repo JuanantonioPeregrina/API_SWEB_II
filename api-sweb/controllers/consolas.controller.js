@@ -84,8 +84,15 @@ exports.getVideojuegos = async (req, res) => {
   const limit = parseInt(req.query.limit) || 20;
   const skip = (page - 1) * limit;
   try {
+    const consola = await db.collection('consolas').findOne({ _id: new ObjectId(req.params.id) });
+
+    if (!consola || !Array.isArray(consola.videojuegos_compatibles)) {
+        return res.status(404).json({ error: 'Consola no encontrada o sin juegos compatibles' });
+    }
+    const total = consola.videojuegos_compatibles.length;
+
     const juegos = await db.collection('videojuegos')
-      .find({ dispositivo: req.params.id })
+      .find({ dispositivo: consola.nombre })
       .skip(skip)
       .limit(limit)
       .toArray();
@@ -93,32 +100,12 @@ exports.getVideojuegos = async (req, res) => {
     res.status(200).json({
       page,
       limit,
-      total: juegos.length,
+      total,
+      totalPages: Math.ceil(total / limit),
       data: juegos
     });
+
   } catch (err) {
     res.status(500).json({ error: 'Error al obtener las consolas', detalle: err.message });
   }
 };
-
-exports.addVideojuego = async (req, res) => {
-  const videojuego = { ...req.body, consolaId: req.params.id };
-  const result = await getDB().collection('videojuegos').insertOne(videojuego);
-  res.status(201).json(result);
-};
-
-exports.updateVideojuego = async (req, res) => {
-  const { videojuegoId } = req.query;
-  const result = await getDB().collection('videojuegos').updateOne(
-    { _id: new ObjectId(videojuegoId), consolaId: req.params.id },
-    { $set: req.body }
-  );
-  res.json(result);
-};
-
-exports.removeVideojuego = async (req, res) => {
-  const { videojuegoId } = req.query;
-  const result = await getDB().collection('videojuegos').deleteOne({ _id: new ObjectId(videojuegoId), consolaId: req.params.id });
-  res.json(result);
-};
-
