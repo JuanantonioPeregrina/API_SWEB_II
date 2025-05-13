@@ -78,3 +78,43 @@ exports.getVideojuegos = async (req, res) => {
     res.status(500).json({ error: 'Error al obtener las empresas', detalle: err.message });
   }
 };
+exports.addVideojuego = async (req, res) => {
+  const { empresaId, consolaId } = req.params;
+
+  try {
+    const db = getDB();
+
+    const consola = await db.collection('consolas').findOne({ _id: new ObjectId(consolaId) });
+    if (!consola) {
+      return res.status(404).json({ error: 'Consola no encontrada' });
+    }
+
+    const result = await db.collection('empresas').updateOne(
+      { _id: new ObjectId(empresaId) },
+      { $addToSet: { consolas_compatibles: consola.nombre } }
+    );
+
+    res.status(201).json({
+      message: `Consola "${consola.nombre}" añadido a la empresa`,
+      result
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: 'Error al añadir la consola', detalle: err.message });
+  }
+};
+
+exports.updateVideojuego = async (req, res) => {
+  const { videojuegoId } = req.query;
+  const result = await getDB().collection('videojuegos').updateOne(
+    { _id: new ObjectId(videojuegoId), empresaId: req.params.id },
+    { $set: req.body }
+  );
+  res.json(result);
+};
+
+exports.removeVideojuego = async (req, res) => {
+  const { videojuegoId } = req.query;
+  const result = await getDB().collection('videojuegos').deleteOne({ _id: new ObjectId(videojuegoId), empresaId: req.params.id });
+  res.json(result);
+};

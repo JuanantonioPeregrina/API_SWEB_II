@@ -168,23 +168,27 @@ paths:
       responses:
         "200":
           description: Lista de videojuegos disponibles en la consola
-          post:
-      summary: Agregar un videojuego a una consola
+  /consolas/{consolaId}/videojuegos/{videojuegoId}: 
+    post:
+      summary: Añadir nombre de un videojuego a una consola usando sus IDs
       parameters:
-        - name: id
+        - name: consolaId
           in: path
           required: true
           schema:
             type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Videojuego"
+        - name: videojuegoId
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         "201":
-          description: Videojuego agregado a la consola
+          description: Videojuego añadido correctamente
+        "404":
+          description: Videojuego o consola no encontrada
+        "500":
+          description: Error del servidor
     put:
       summary: Actualizar un videojuego en una consola
       parameters:
@@ -306,23 +310,27 @@ paths:
       responses:
         "200":
           description: Lista de videojuegos desarrollados por la empresa
+  /empresas/{empresaId}/consolas/{consolaId}: 
     post:
-      summary: Agregar un videojuego a la empresa
+      summary: Añadir nombre de una consola a una empresa usando sus IDs
       parameters:
-        - name: id
+        - name: empresaId
           in: path
           required: true
           schema:
             type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Videojuego"
+        - name: consolaId
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         "201":
-          description: Videojuego agregado a la empresa
+          description: Consola añadida correctamente
+        "404":
+          description: Empresa o consola no encontrada
+        "500":
+          description: Error del servidor
     put:
       summary: Actualizar un videojuego de la empresa
       parameters:
@@ -361,6 +369,29 @@ paths:
       responses:
         "200":
           description: Videojuego eliminado de la empresa
+  /rawg/search:
+    get:
+      summary: Buscar videojuegos en la API externa RAWG
+      parameters:
+        - in: query
+          name: query
+          schema:
+            type: string
+            example: 'zelda'
+          description: Término de búsqueda para la API RAWG
+      responses:
+        '200':
+           description: Resultados obtenidos desde RAWG o desde fallback local
+            content:
+              application/json:
+                 example:
+                  source: "rawg"
+                  games:
+                    - nombre: "The Legend of Zelda: Breath of the Wild"
+                      tiendas:
+                        - nombre: "Nintendo eShop"
+                          slug: "nintendo"
+                  notFoundGames: [] 
 components:
   schemas:
     Videojuego:
@@ -451,26 +482,3 @@ components:
             type: string
         desarrolladora:
           type: boolean
-  /rawg/search:
-    get:
-      summary: Buscar videojuegos en la API externa RAWG
-      parameters:
-        - in: query
-          name: query
-          schema:
-            type: string
-            example: 'zelda'
-          description: Término de búsqueda para la API RAWG
-      responses:
-        '200':
-          description: Resultados obtenidos desde RAWG o desde fallback local
-          content:
-            application/json:
-              example:
-                source: "rawg"
-                games:
-                  - nombre: "The Legend of Zelda: Breath of the Wild"
-                    tiendas:
-                      - nombre: "Nintendo eShop"
-                        slug: "nintendo"
-                notFoundGames: [] 
