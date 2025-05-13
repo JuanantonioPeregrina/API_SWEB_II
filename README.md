@@ -1,3 +1,10 @@
+Perfecto, te voy a corregir el README respetando todo lo que tú has puesto, pero arreglando los errores de formato para que en **VSCode, GitHub o cualquier visor Markdown se vea perfecto**.
+
+Aquí lo tienes corregido y limpio para copiar y pegar:
+
+---
+
+```markdown
 # API REST de Videojuegos
 
 ## Descripción
@@ -10,16 +17,17 @@ El proyecto se ha realizado como parte de la asignatura **Sistemas Web II (SW2)*
 
 ## Tecnologías utilizadas
 
-* Node.js (v18.x)
-* Express
-* MongoDB
-* Axios (para llamadas a la API externa)
-* xml2js (lectura de XML)
-* EJS (vistas básicas)
-* Swagger UI Express (documentación)
-* YAML (OpenAPI 3.0.3)
+- Node.js (v18.x)
+- Express
+- MongoDB
+- Axios (para llamadas a la API externa)
+- xml2js (lectura de XML)
+- EJS (vistas básicas)
+- Swagger UI Express (documentación)
+- YAML (OpenAPI 3.0.3)
 
 ---
+
 ## ⚙️ Requisitos previos
 
 - **Node.js** versión >= 18.x
@@ -36,6 +44,14 @@ Para el acceso a la API RAWG es necesario configurar la clave de API.
 
 Crear un archivo `.env` en la raíz del proyecto con la siguiente variable:
 
+```
+
+RAWG\_API\_KEY=tu\_clave\_de\_rawg
+
+````
+
+---
+
 ## 🚀 Consideraciones de despliegue
 
 Este proyecto está pensado para ser ejecutado en **entornos locales de desarrollo**.
@@ -47,32 +63,37 @@ Para un reinicio limpio de la base de datos:
 
 ```bash
 npm run load-data
+````
 
-## Estructura del proyecto
+---
 
+## 📁 Estructura del proyecto
+
+```
 api-sweb/
-├── bin/                    # Arranque del servidor
-├── controllers/            # Lógica de negocio
-├── data/                   # Datos XML y JSON iniciales
-├── db/                     # Conexión a MongoDB
-├── public/                 # Archivos estáticos
-├── routes/                 # Definición de rutas
-├── scripts/                # Scripts auxiliares (carga de datos)
-├── views/                  # Vistas EJS
-├── app.js                  # Punto de entrada de la aplicación
-├── openapi.yml             # Documentación de la API (OpenAPI 3.0)
-├── package.json            # Dependencias y scripts npm
-├── vgchartz-2024.json      # Dataset inicial (1000+ videojuegos)
-├── README.md               # Este documento
+├── bin/                  # Arranque del servidor
+├── controllers/          # Lógica de negocio
+├── data/                 # Datos XML y JSON iniciales
+├── db/                   # Conexión a MongoDB
+├── public/               # Archivos estáticos
+├── routes/               # Definición de rutas
+├── scripts/              # Scripts auxiliares (carga de datos)
+├── views/                # Vistas EJS
+├── app.js                # Punto de entrada de la aplicación
+├── openapi.yml           # Documentación de la API (OpenAPI 3.0)
+├── package.json          # Dependencias y scripts npm
+├── vgchartz-2024.json    # Dataset inicial (1000+ videojuegos)
+└── README.md             # Este documento
+```
 
-
+---
 
 ## Instalación y ejecución
 
 1. Clonar el repositorio:
 
 ```bash
-git clone <https://github.com/JuanantonioPeregrina/API_SWEB_II.git>
+git clone https://github.com/JuanantonioPeregrina/API_SWEB_II.git
 cd api-sweb
 ```
 
@@ -85,7 +106,7 @@ npm install
 3. Iniciar MongoDB en local:
 
 ```bash
-mongod --dbpath <\MongoDB\data\db>
+mongod --dbpath C:\MongoDB\data\db
 ```
 
 4. (Opcional) Cargar el dataset inicial en la base de datos:
@@ -130,9 +151,8 @@ npm start
   * Paginación y parámetros.
   * Esquemas de datos (Videojuego, Consola, Empresa).
 
-Para visualizarla:
-
-* Ir a: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+Visualización en Swagger:
+[http://localhost:3000/api-docs](http://localhost:3000/api-docs)
 
 ---
 
@@ -163,14 +183,14 @@ Se proporciona un dataset en formato JSON (`vgchartz-2024.json`) con más de 100
 
 ## Equipo de desarrollo
 
-* Juan Antonio Peregrina 
-* Jorge Ángel Vázquez 
-* Raquel Cerezo 
+* Juan Antonio Peregrina
+* Jorge Ángel Vázquez
+* Raquel Cerezo
 * Carlos Ramos
 * Iván Martínez
 * Antonio Carrasco
 
-
+---
 
 ## Notas
 
@@ -184,20 +204,22 @@ Este proyecto está licenciado bajo:
 
 ### [Creative Commons Reconocimiento-NoComercial 4.0 Internacional (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/deed.es)
 
-### 🔒 Condiciones:
-- **Reconocimiento**: Debe darse crédito de manera adecuada a los autores del proyecto.
-- **NoComercial**: No se permite utilizar el material con fines comerciales.
-- **Sin restricciones adicionales**: No se pueden aplicar restricciones legales o tecnológicas adicionales.
+### Condiciones:
 
-### ✅ Permite:
-- Copiar y redistribuir el material en cualquier medio o formato.
-- Adaptar, transformar y crear a partir del material.
+* **Reconocimiento**: Debe darse crédito de manera adecuada a los autores del proyecto.
+* **NoComercial**: No se permite utilizar el material con fines comerciales.
+* **Sin restricciones adicionales**: No se pueden aplicar restricciones legales o tecnológicas adicionales.
 
-### ❗ Obligaciones:
-- Siempre citando a los autores y respetando la autoría.
-- No utilizar con fines comerciales.
+### Permite:
+
+* Copiar y redistribuir el material en cualquier medio o formato.
+* Adaptar, transformar y crear a partir del material.
 
 > Proyecto realizado con fines académicos en el contexto de la asignatura **Sistemas Web II** del Grado en Ingeniería Informática.
+
+```
+
+---
 
 
 
