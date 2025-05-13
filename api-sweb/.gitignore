@@ -39,6 +39,5 @@ coverage/
 *.tgz
 
 # Dataset o scripts generados
-data/*.json
 scripts/*.dump
 `
