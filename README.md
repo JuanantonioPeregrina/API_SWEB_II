@@ -21,6 +21,7 @@ El proyecto se ha realizado como parte de la asignatura **Sistemas Web II (SW2)*
 
 ---
 
+
 ## Estructura del proyecto
 
 ```
@@ -47,7 +48,7 @@ api-sweb/
 1. Clonar el repositorio:
 
 ```bash
-git clone <URL-del-repo>
+git clone <https://github.com/JuanantonioPeregrina/API_SWEB_II.git>
 cd api-sweb
 ```
 
