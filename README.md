@@ -61,7 +61,7 @@ npm install
 3. Iniciar MongoDB en local:
 
 ```bash
-mongod --dbpath <ruta-a-tu-carpeta-de-datos>
+mongod --dbpath <\MongoDB\data\db>
 ```
 
 4. (Opcional) Cargar el dataset inicial en la base de datos:
