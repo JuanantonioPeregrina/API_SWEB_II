@@ -154,8 +154,26 @@ Este proyecto se ha realizado con fines académicos como práctica de la asignat
 
 ---
 
-## Licencia
+## 📄 Licencia
 
-Proyecto educativo - No comercial.
+Este proyecto está licenciado bajo:
+
+### [Creative Commons Reconocimiento-NoComercial 4.0 Internacional (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/deed.es)
+
+### 🔒 Condiciones:
+- **Reconocimiento**: Debe darse crédito de manera adecuada a los autores del proyecto.
+- **NoComercial**: No se permite utilizar el material con fines comerciales.
+- **Sin restricciones adicionales**: No se pueden aplicar restricciones legales o tecnológicas adicionales.
+
+### ✅ Permite:
+- Copiar y redistribuir el material en cualquier medio o formato.
+- Adaptar, transformar y crear a partir del material.
+
+### ❗ Obligaciones:
+- Siempre citando a los autores y respetando la autoría.
+- No utilizar con fines comerciales.
+
+> Proyecto realizado con fines académicos en el contexto de la asignatura **Sistemas Web II** del Grado en Ingeniería Informática.
+
 
 
