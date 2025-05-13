@@ -3,7 +3,7 @@
 
 ## Descripción
 
-Este proyecto consiste en el desarrollo de una API RESTful para la gestión de videojuegos, consolas y empresas desarrolladoras. Se ha implementado en **Node.js** utilizando **Express** y se conecta a una base de datos **MongoDB**. Además, integra datos de una API externa (RAWG) y permite la carga de datos desde un archivo XML.
+Este proyecto consiste en el desarrollo de una API RESTful para la gestión de videojuegos, consolas y empresas desarrolladoras. Se ha implementado en **Node.js** utilizando **Express** y se conecta a una base de datos **MongoDB**. Además, integra datos de una API externa (RAWG) y permite la carga de datos desde un archivo JSON.
 
 El proyecto se ha realizado como parte de la asignatura **Sistemas Web II (SW2)**.
 
@@ -29,37 +29,62 @@ El proyecto se ha realizado como parte de la asignatura **Sistemas Web II (SW2)*
 - Conexión a Internet para consultas a la API RAWG (con fallback en caso de caída).
 
 Se recomienda usar **Postman** o herramientas similares para probar la API de forma sencilla.
+---
 
+## Instalación y ejecución
+
+1. Clonar el repositorio:
+
+```bash
+git clone https://github.com/JuanantonioPeregrina/API_SWEB_II.git
+cd api-sweb
+```
+
+2. Instalar las dependencias:
+
+```bash
+npm install
+npm i
+```
+
+3. Iniciar MongoDB en local:
+
+```bash
+mongod --dbpath C:\MongoDB\data\db
+```
+Está pendiente decir como se importar los datos
+
+4. (Opcional) Cargar el dataset inicial en la base de datos:
+
+```bash
+npm run load-data
+```
+
+5. Levantar el servidor:
+
+```bash
+npm start
+```
+
+6. Acceder en el navegador:
+
+* Home: [http://localhost:3000](http://localhost:3000)
+* Documentación Swagger: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+
+---
 ---
 
 ## 🛠️ Variables de entorno
 
-Para el acceso a la API RAWG es necesario configurar la clave de API.
+Para el acceso a la API RAWG es necesario configurar la clave de API, es posible mediante esta url: https://rawg.io/apidocs
 
 Crear un archivo `.env` en la raíz del proyecto con la siguiente variable:
 
 ```
 
-RAWG\_API\_KEY=tu\_clave\_de\_rawg
+RAWG_API_KEY=tu_clave_de_rawg
 
-````
-
----
-
-## 🚀 Consideraciones de despliegue
-
-Este proyecto está pensado para ser ejecutado en **entornos locales de desarrollo**.
-
-Para un reinicio limpio de la base de datos:
-1. Parar MongoDB.
-2. Eliminar manualmente los archivos de la carpeta de datos (`--dbpath`).
-3. Volver a cargar el dataset con:
-
-```bash
-npm run load-data
-````
-
----
+```
 
 ## 📁 Estructura del proyecto
 
@@ -80,47 +105,7 @@ api-sweb/
 └── README.md             # Este documento
 ```
 
----
 
-## Instalación y ejecución
-
-1. Clonar el repositorio:
-
-```bash
-git clone https://github.com/JuanantonioPeregrina/API_SWEB_II.git
-cd api-sweb
-```
-
-2. Instalar las dependencias:
-
-```bash
-npm install
-```
-
-3. Iniciar MongoDB en local:
-
-```bash
-mongod --dbpath C:\MongoDB\data\db
-```
-
-4. (Opcional) Cargar el dataset inicial en la base de datos:
-
-```bash
-npm run load-data
-```
-
-5. Levantar el servidor:
-
-```bash
-npm start
-```
-
-6. Acceder en el navegador:
-
-* Home: [http://localhost:3000](http://localhost:3000)
-* Documentación Swagger: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
-
----
 
 ## Funcionalidades implementadas
 
@@ -145,20 +130,18 @@ npm start
   * Paginación y parámetros.
   * Esquemas de datos (Videojuego, Consola, Empresa).
 
-Visualización en Swagger:
-[http://localhost:3000/api-docs](http://localhost:3000/api-docs)
-
 ---
 
 ## Datos iniciales
 
-Se proporciona un dataset en formato JSON (`vgchartz-2024.json`) con más de 1000 videojuegos para inicializar la base de datos.
+De partida nos basamos en un dataset en formato JSON (`vgchartz-2024.json`) con más de 1000 videojuegos para inicializar la base de datos. 
+No obstante, esto tan solo nos proporcionaba una colección por lo que simulamos mediante un script (X) datos fictios lo más realistas posibles concretados en los 3 ficheros JSON (...).
 
 ---
 
 ## Integración con API externa (RAWG)
 
-* Se utiliza la API de RAWG para buscar videojuegos mediante la ruta `/rawg/search`.
+* Se utiliza la API de RAWG para buscar videojuegos mediante la ruta `/rawg/search` filtrando por la tienda en la que se encuentra ese videojuego disponible. Por ejemplo: /halo (buscarlo)
 * Los resultados se guardan en MongoDB para disponer de fallback en caso de fallo de la API externa.
 
 ---
@@ -185,11 +168,6 @@ Se proporciona un dataset en formato JSON (`vgchartz-2024.json`) con más de 100
 * Antonio Carrasco
 
 ---
-
-## Notas
-
-Este proyecto se ha realizado con fines académicos como práctica de la asignatura SW2. Se ha intentado seguir buenas prácticas en la medida de lo posible y simular un entorno de trabajo real.
-
 ---
 
 ## 📄 Licencia
