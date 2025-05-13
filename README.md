@@ -20,6 +20,22 @@ El proyecto se ha realizado como parte de la asignatura **Sistemas Web II (SW2)*
 * YAML (OpenAPI 3.0.3)
 
 ---
+## ⚙️ Requisitos previos
+
+- **Node.js** versión >= 18.x
+- **MongoDB** versión >= 6.x (ejecutándose en local)
+- Conexión a Internet para consultas a la API RAWG (con fallback en caso de caída).
+
+Se recomienda usar **Postman** o herramientas similares para probar la API de forma sencilla.
+
+---
+
+## 🛠️ Variables de entorno
+
+Para el acceso a la API RAWG es necesario configurar la clave de API.
+
+Crear un archivo `.env` en la raíz del proyecto con la siguiente variable:
+
 
 
 ## Estructura del proyecto
