@@ -40,33 +40,40 @@ git clone https://github.com/JuanantonioPeregrina/API_SWEB_II.git
 cd api-sweb
 ```
 
-2. Instalar las dependencias:
+2. Instalaciones:
 
 ```bash
 npm install
 npm i
+npm install axios
 ```
 
-3. Iniciar MongoDB en local:
+3. En otra terminal hay que acceder a mongosh poniendo:
 
 ```bash
-mongod --dbpath C:\MongoDB\data\db
+mongosh
 ```
-Está pendiente decir como se importar los datos
 
-4. (Opcional) Cargar el dataset inicial en la base de datos:
+4. Comprobar que dentro de api_SWEB_II exiten las colecciones consolas, empresas y videojuegos:
 
 ```bash
-npm run load-data
+use api_SWEB_II 
+show collections
 ```
 
-5. Levantar el servidor:
+5. Los datos se cargan haciendo uso de este comando en otra terminal (situarse en api-sweb/scripts):
+
+```bash
+node seeds.js
+```
+
+6. Levantar el servidor:
 
 ```bash
 npm start
 ```
 
-6. Acceder en el navegador:
+7. Acceder en el navegador:
 
 * Home: [http://localhost:3000](http://localhost:3000)
 * Documentación Swagger: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
