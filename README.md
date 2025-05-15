@@ -43,9 +43,9 @@ cd api-sweb
 2. Instalaciones:
 
 ```bash
-npm install
 npm i
 npm install axios
+npm i swagger-ui-express
 ```
 
 3. En otra terminal hay que acceder a mongosh poniendo:
