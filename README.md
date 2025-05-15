@@ -91,6 +91,8 @@ Crear un archivo `.env` en la raíz del proyecto con la siguiente variable:
 
 RAWG_API_KEY=tu_clave_de_rawg
 
+Si no desea registrarse contacte con el alumno Juan Antonio o bien Jorge Ángel y le proporcionamos nuestra propia API_KEY.
+
 ```
 
 ## 📁 Estructura del proyecto
@@ -150,7 +152,7 @@ No obstante, esto tan solo nos proporcionaba una colección por lo que simulamos
 
 * Se utiliza la API de RAWG para buscar videojuegos mediante la ruta `/rawg/search`. Por ejemplo: http://localhost:3000/rawg/search?query=halo
 * Los resultados se guardan en MongoDB para disponer de fallback en caso de fallo de la API externa. 
-* Se almacenan los datos de dos maneras: 1. Se incorpora/actualiza el campo de tiendas en la colección de videojuegos. 2.Almacenamos todas las variables que se consumen de la API externa por si no disponemos de ese videojuego en concreto.
+* Se almacenan los datos de dos maneras: 1. Se incorpora/actualiza el campo de tiendas en la colección de videojuegos. 2.Almacenamos todas las variables que se consumen de la API externa por si no disponemos de ese videojuego en concreto. Se puede comprobar el funcionamiento ya que indica la fuente si proviene de rawg o local y explicar el fallback.
 
 ---
 
