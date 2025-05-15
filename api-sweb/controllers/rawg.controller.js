@@ -6,11 +6,16 @@ const API_KEY = '4b1ef09681ae49c9a70641a4cc74fef7';
 exports.searchAndSyncGames = async (req, res) => {
   const search = req.query.query || 'zelda';
 
+  //Si cambiamos esto por lo siguiente
   try {
     const response = await axios.get('https://api.rawg.io/api/games', {
       params: { key: API_KEY, search }
     });
+/*
+Simula la caída de la API externa
+throw new Error('Simulando la caída de la API RAWG'); */
 
+    
     const games = response.data.results;
     const db = getDB();
     const notFoundGames = [];
