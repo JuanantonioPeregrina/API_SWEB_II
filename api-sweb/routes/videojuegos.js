@@ -8,4 +8,5 @@ router.get('/videojuegos/:id', videojuegosCtrl.getById);
 router.put('/videojuegos/:id', videojuegosCtrl.update);
 router.delete('/videojuegos/:id', videojuegosCtrl.remove);
 
+
 module.exports = router;
