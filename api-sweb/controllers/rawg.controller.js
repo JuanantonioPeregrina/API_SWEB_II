@@ -15,6 +15,7 @@ exports.searchAndSyncGames = async (req, res) => {
     const db = getDB();
     const notFoundGames = [];
 
+    // Guardar los datos crudos en la colección rawg_data como backup
     await db.collection('rawg_data').insertOne({
       query: search,
       data: games,
@@ -24,27 +25,38 @@ exports.searchAndSyncGames = async (req, res) => {
     for (const game of games) {
       const { name, stores } = game;
 
-      const tiendas = stores?.length > 0
-        ? stores.map(store => ({
-            nombre: store.store.name,
-            slug: store.store.slug
-          }))
-        : null;
+      // Verificar los datos recibidos
+      console.log(`Datos recibidos de RAWG para ${name}: `, stores);
 
-        const consolas = games.platforms?.length > 0
-    ? games.platforms.map(p => p.platform.slug)
-    : [];
+      // Extraer tiendas y sus slugs, o establecer null si no hay tiendas
+      const tiendas = stores && stores.length > 0 ? stores.map(store => ({
+        nombre: store.store.name,
+        slug: store.store.slug
+      })) : [];
 
+      console.log(`Tiendas formateadas para ${name}: `, tiendas);
+
+      // Buscar coincidencia por nombre usando regex para ser más flexible
       const regex = new RegExp(`^${name}$`, 'i');
-      const existingGame = await db.collection('rawg').findOne({ nombre: { $regex: regex } });
+      const existingGame = await db.collection('videojuegos').findOne({ nombre: { $regex: regex } });
 
       if (existingGame) {
-        await db.collection('rawg').updateOne(
+        console.log(`Actualizando tiendas para: ${name}`);
+
+        await db.collection('videojuegos').updateOne(
           { _id: existingGame._id },
-          { $set: { tiendas, consolas } }
+          {
+            $set: { tiendas }
+          }
         );
+        console.log(`Actualizado: ${name}`);
       } else {
-        await db.collection('rawg').insertOne({ nombre: name, tiendas });
+        console.log(`No encontrado en DB: ${name}`);
+        await db.collection('videojuegos').insertOne({
+          nombre: name,
+          tiendas
+        });
+        console.log(`Nuevo documento creado para: ${name}`);
         notFoundGames.push(name);
       }
     }
