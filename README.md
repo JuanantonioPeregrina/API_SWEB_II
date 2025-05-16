@@ -12,7 +12,7 @@ El proyecto se ha realizado como parte de la asignatura **Sistemas Web II (SW2)*
 ## 📚 Tabla de Contenido
 - [Descripción](#descripción)
 - [Tecnologías utilizadas](#tecnologías-utilizadas)
-- [Requisitos previos](#requisitos-previos)
+- [Requisitos previos](#⚙️-requisitos-previos)
 - [Estructura del proyecto](#estructura-del-proyecto)
 - [Instalación y ejecución](#instalación-y-ejecución)
 - [Mapa de rutas de la API](#mapa-de-rutas-de-la-api)
