@@ -12,7 +12,7 @@ El proyecto se ha realizado como parte de la asignatura **Sistemas Web II (SW2)*
 ## 📚 Tabla de Contenido
 - [Descripción](#descripción)
 - [Tecnologías utilizadas](#tecnologías-utilizadas)
-- [Requisitos previos](#⚙️-requisitos-previos)
+- [Requisitos previos](#requisitos-previos)
 - [Estructura del proyecto](#estructura-del-proyecto)
 - [Instalación y ejecución](#instalación-y-ejecución)
 - [Mapa de rutas de la API](#mapa-de-rutas-de-la-api)
@@ -35,7 +35,7 @@ El proyecto se ha realizado como parte de la asignatura **Sistemas Web II (SW2)*
 
 ---
 
-## ⚙️ Requisitos previos
+## Requisitos previos
 
 - **Node.js** versión >= 18.x
 - **MongoDB** versión >= 6.x (ejecutándose en local)
@@ -94,7 +94,7 @@ npm start
 ---
 ---
 
-## 🛠️ Variables de entorno
+## Variables de entorno
 
 Para el acceso a la API RAWG es necesario configurar la clave de API, es posible mediante esta url: https://rawg.io/apidocs
 
@@ -108,7 +108,7 @@ Si no desea registrarse contacte con el alumno Juan Antonio o bien Jorge Ángel 
 
 ```
 
-## 📁 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 api-sweb/
@@ -169,7 +169,7 @@ No obstante, esto tan solo nos proporcionaba una colección por lo que simulamos
 
 ---
 
-## 🗺️ Mapa de rutas de la API
+## Mapa de rutas de la API
 
 ### 🎮 Videojuegos
 | Método   | Ruta                         | Descripción                           |
@@ -245,7 +245,7 @@ No obstante, esto tan solo nos proporcionaba una colección por lo que simulamos
 ---
 ---
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto está licenciado bajo:
 
