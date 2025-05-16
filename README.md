@@ -199,7 +199,7 @@ No obstante, esto tan solo nos proporcionaba una colección por lo que simulamos
 
 ---
 
-### 🔍 API externa 
+### 🔍 API externa RAWG
 | Método   | Ruta                          | Descripción                           |
 |----------|-------------------------------|----------------------------------------|
 | GET      | /rawg/search?query={nombre}   | Buscar videojuegos en RAWG (con fallback local) |
