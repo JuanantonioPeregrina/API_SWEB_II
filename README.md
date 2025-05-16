@@ -18,7 +18,6 @@ El proyecto se ha realizado como parte de la asignatura **Sistemas Web II (SW2)*
 - [Mapa de rutas de la API](#mapa-de-rutas-de-la-api)
 - [Ejemplos de uso de la API](#ejemplos-de-uso-de-la-api)
 - [Datos iniciales](#datos-iniciales)
-- [Posibles mejoras](#posibles-mejoras)
 - [Equipo de desarrollo](#equipo-de-desarrollo)
 - [Licencia](#licencia)
 
