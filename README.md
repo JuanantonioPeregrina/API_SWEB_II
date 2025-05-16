@@ -9,6 +9,20 @@ El proyecto se ha realizado como parte de la asignatura **Sistemas Web II (SW2)*
 
 ---
 
+## 📚 Tabla de Contenido
+- [Descripción](#descripción)
+- [Tecnologías utilizadas](#tecnologías-utilizadas)
+- [Requisitos previos](#requisitos-previos)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Instalación y ejecución](#instalación-y-ejecución)
+- [Mapa de rutas de la API](#mapa-de-rutas-de-la-api)
+- [Ejemplos de uso de la API](#ejemplos-de-uso-de-la-api)
+- [Datos iniciales](#datos-iniciales)
+- [Posibles mejoras](#posibles-mejoras)
+- [Equipo de desarrollo](#equipo-de-desarrollo)
+- [Licencia](#licencia)
+
+
 ## Tecnologías utilizadas
 
 - Node.js (v18.x)
