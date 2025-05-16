@@ -156,6 +156,58 @@ No obstante, esto tan solo nos proporcionaba una colección por lo que simulamos
 
 ---
 
+## 🗺️ Mapa de rutas de la API
+
+### 🎮 Videojuegos
+| Método   | Ruta                         | Descripción                           |
+|----------|------------------------------|---------------------------------------|
+| GET      | /videojuegos                 | Obtener lista de videojuegos          |
+| POST     | /videojuegos                 | Crear un nuevo videojuego             |
+| GET      | /videojuegos/{id}            | Obtener videojuego por ID             |
+| PUT      | /videojuegos/{id}            | Actualizar videojuego por ID          |
+| DELETE   | /videojuegos/{id}            | Eliminar videojuego por ID            |
+
+---
+
+### 🕹️ Consolas
+| Método   | Ruta                         | Descripción                           |
+|----------|------------------------------|---------------------------------------|
+| GET      | /consolas                    | Obtener lista de consolas             |
+| POST     | /consolas                    | Crear una nueva consola               |
+| GET      | /consolas/{id}               | Obtener consola por ID                |
+| PUT      | /consolas/{id}               | Actualizar consola por ID             |
+| DELETE   | /consolas/{id}               | Eliminar consola por ID               |
+| GET      | /consolas/{id}/videojuegos   | Listar videojuegos en una consola     |
+| POST     | /consolas/{consolaId}/videojuegos/{videojuegoId} | Añadir videojuego a consola   |
+| DELETE   | /consolas/{consolaId}/videojuegos/{videojuegoId} | Eliminar videojuego de consola |
+| PUT      | /consolas/{consolaId}/videojuegos/{videojuegoOldId}/{videojuegoId} | Actualizar videojuego en consola |
+
+---
+
+### 🏢 Empresas
+| Método   | Ruta                          | Descripción                          |
+|----------|-------------------------------|--------------------------------------|
+| GET      | /empresas                     | Obtener lista de empresas            |
+| POST     | /empresas                     | Crear una nueva empresa              |
+| GET      | /empresas/{id}                | Obtener empresa por ID               |
+| PUT      | /empresas/{id}                | Actualizar empresa por ID            |
+| DELETE   | /empresas/{id}                | Eliminar empresa por ID              |
+| GET      | /empresas/{id}/videojuegos    | Listar videojuegos de una empresa    |
+| POST     | /empresas/{empresaId}/consolas/{consolaId} | Añadir consola a empresa      |
+| DELETE   | /empresas/{empresaId}/consolas/{consolaId} | Eliminar consola de empresa    |
+| PUT      | /empresas/{empresaId}/consolas/{consolaOldId}/{consolaId} | Actualizar consola en empresa  |
+
+---
+
+### 🔍 API externa RAWG
+| Método   | Ruta                          | Descripción                           |
+|----------|-------------------------------|----------------------------------------|
+| GET      | /rawg/search?query={nombre}   | Buscar videojuegos en RAWG (con fallback local) |
+
+---
+
+
+
 ## Requisitos del proyecto (cumplidos)
 
 * ✅ CRUD de al menos 3 recursos.
