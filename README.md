@@ -166,6 +166,7 @@ Por último, cabe destacar la incorporación de **dos datasets adicionales**, co
 
 #### 2. Modelo de datos:
 ![Modelo de datos](./Modelo-videojuegos.png)
+
 ---
 
 ## Integración con API externa (RAWG)
