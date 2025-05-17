@@ -165,7 +165,7 @@ Cabe destacar que parte de la información del dataset, especialmente los datos 
 Por último, cabe destacar la incorporación de **dos datasets adicionales**, correspondientes a **consolas** y **empresas desarrolladoras**, los cuales aportan registros complementarios y aumentan la complejidad del modelo de datos, con el objetivo de satisfacer los criterios del proyecto.
 
 #### 2. Modelo de datos:
-
+![Modelo de datos](./Modelo-videojuegos.png)
 ---
 
 ## Integración con API externa (RAWG)
