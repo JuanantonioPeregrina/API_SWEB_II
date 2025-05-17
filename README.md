@@ -17,7 +17,7 @@ El proyecto se ha realizado como parte de la asignatura **Sistemas Web II (SW2)*
 - [Instalación y ejecución](#instalación-y-ejecución)
 - [Mapa de rutas de la API](#mapa-de-rutas-de-la-api)
 - [Ejemplos de uso de la API](#ejemplos-de-uso-de-la-api)
-- [Datos iniciales](#datos-iniciales)
+- [Análisis del Dataset y Scripts de Carga](#Análisis-del-Dataset-y-Scripts-de-Carga)
 - [Equipo de desarrollo](#equipo-de-desarrollo)
 - [Licencia](#licencia)
 
@@ -154,10 +154,17 @@ api-sweb/
 
 ---
 
-## Datos iniciales
+## Análisis del Dataset y Scripts de Carga
 
-De partida nos basamos en un dataset en formato JSON (`vgchartz-2024.json`) con más de 1000 videojuegos para inicializar la base de datos. 
-No obstante, esto tan solo nos proporcionaba una colección por lo que simulamos mediante un script (X) datos fictios lo más realistas posibles concretados en los 3 ficheros JSON (...).
+#### 1.Introducción
+
+En este apartado, se describe el conjunto de datos utilizados en el proyecto de API REST de videojuegos, así como el funcionamiento del script de carga de datos. El sistema contiene y permite manejar información sobre **videojuegos**, **consolas** y **empresas desarrolladoras**.
+
+Cabe destacar que parte de la información del dataset, especialmente los datos de ventas, puntuaciones y fechas de lanzamiento, provienen de **VGChartz**. En concreto, como punto de partida se ha utilizado un dataset en formato *JSON (`vgchartz-2024.json`)* con más de **1000 videojuegos**, el cual ha sido estructurado para su integración en la API. Aunque conserva datos originales, se han añadido elementos adicionales para cumplir con los requisitos del enunciado.
+
+Por último, cabe destacar la incorporación de **dos datasets adicionales**, correspondientes a **consolas** y **empresas desarrolladoras**, los cuales aportan registros complementarios y aumentan la complejidad del modelo de datos, con el objetivo de satisfacer los criterios del proyecto.
+
+#### 2. Modelo de datos:
 
 ---
 
