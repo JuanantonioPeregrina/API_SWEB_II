@@ -167,6 +167,63 @@ Por último, cabe destacar la incorporación de **dos datasets adicionales**, co
 #### 2. Modelo de datos:
 ![Modelo de datos](./Modelo-Videojuegos.svg)
 
+#### 3.Descripción detallada de los datasets
+
+**3.1. `Videojuegos_Completos_Actualizados.json`**
+
+- **Contenido**: Lista de videojuegos con sus atributos principales.
+- **Estructura**:
+  - `nombre`:*String* – Nombre del videojuego.
+  - `dispositivo`: *String* – Consola o plataforma compatible.
+  - `fecha_lanzamiento`: *Date* – Fecha de publicación.
+  - `empresa`: *String* – Empresa desarrolladora (*referencia a `empresas`*).
+  - `PEGI`: *Integer* – Clasificación por edad.
+  - `precio`: *Float* – Precio de venta estimado.
+  - `multijugador`: *Boolean* – Si permite multijugador.
+  - `idioma`: *String* – Idioma del juego.
+  - `descripcion`: *String* – Resumen del juego.
+  - `version`: *String* – Versión o edición.
+
+- **Relaciones**:
+  - `empresa` → colección `empresas`
+  - `dispositivo` → colección `consolas`
+
+**3.2. `Consolas_Videojuegos_Actualizado.json`**
+
+- **Contenido**: Información técnica y comercial de las consolas.
+- **Estructura**:
+  - `nombre`: *String* – Identificador único de la consola.
+  - `fabricante`: *String* – Nombre de la empresa (*referencia a `empresas`*).
+  - `fecha_lanzamiento`: *Date*
+  - `almacenamiento`: *String*
+  - `graficos`: *String* – Resolución o tipo de gráficos soportados.
+  - `unidades_disponibles`: *Integer*
+  - `sitio_web`: *String*
+
+- **Relación**:
+  - `fabricante` → `empresas.nombre`
+
+**3.3. `Empresas_Videojuegos_Final.json`**
+
+- **Contenido**: Detalles de las compañías desarrolladoras y fabricantes.
+- **Estructura**:
+  - `nombre`: *String* – Identificador único.
+  - `CIF`: *String* – Código fiscal.
+  - `descripcion`: *String*
+  - `ubicacion`: *String*
+  - `numero_empleados`: *Integer*
+  - `numero_juegos`: *Integer*
+  - `fecha_creacion`: *Date*
+  - `ingresos_anuales`: *Float*
+  - `sitio_web`: *String*
+  - `consolas_fabricadas`: *[String]*
+  - `consolas_compatibles`: *[String]*
+  - `desarrolladora`: *Boolean*
+
+- **Relaciones**:
+  - `nombre` es referenciado por:
+    - `videojuegos.empresa`
+    - `consolas.fabricante`
 ---
 
 ## Integración con API externa (RAWG)
