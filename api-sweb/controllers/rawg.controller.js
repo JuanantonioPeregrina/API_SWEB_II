@@ -6,15 +6,16 @@ const API_KEY = '4b1ef09681ae49c9a70641a4cc74fef7';
 exports.searchAndSyncGames = async (req, res) => {
   const search = req.query.query || 'zelda';
 
-  //Si cambiamos esto por lo siguiente
+ 
   try {
+     //Si cambiamos esto por el throw, se simula la caída de la API externa
     const response = await axios.get('https://api.rawg.io/api/games', {
       params: { key: API_KEY, search }
-    });
-/*
-Simula la caída de la API externa
-throw new Error('Simulando la caída de la API RAWG'); */
+    }); 
 
+/*Simula la caída de la API externa
+throw new Error('Simulando la caída de la API RAWG'); 
+*/
     
 const games = response.data.results;
 const db = getDB();
@@ -63,12 +64,19 @@ res.status(200).json({
 } catch (error) {
 console.error('Error RAWG, usando fallback:', error.message);
 const db = getDB();
-const fallback = await db.collection('rawg_data').findOne({ query: search });
+const fallback = await db.collection('videojuegos').findOne({
+  nombre: { $regex: new RegExp(search, 'i') }
+});
+
 
 if (fallback) {
-  res.status(200).json({ source: 'local', games: fallback.data });
+  res.status(200).json({
+    source: 'local',
+    games: [fallback]
+  });
 } else {
   res.status(500).json({ error: 'No se pudo obtener datos ni desde RAWG ni desde la base de datos.' });
 }
+
 }
 };

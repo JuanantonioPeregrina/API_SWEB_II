@@ -96,7 +96,7 @@ npm start
 
 ## Variables de entorno
 
-Para el acceso a la API RAWG es necesario configurar la clave de API, es posible mediante esta url: https://rawg.io/apidocs
+Para el acceso a la API RAWG es conveniente configurar la clave de API, es posible mediante esta url: https://rawg.io/apidocs
 
 Crear un archivo `.env` en la raíz del proyecto con la siguiente variable:
 
@@ -104,7 +104,7 @@ Crear un archivo `.env` en la raíz del proyecto con la siguiente variable:
 
 RAWG_API_KEY=tu_clave_de_rawg
 
-Si no desea registrarse contacte con el alumno Juan Antonio o bien Jorge Ángel y le proporcionamos nuestra propia API_KEY.
+Sin embargo, debido a indicaciones expresas del profesor de que le hagamos entrega la API_KEY la hemos hardcodeado en rawg.controller.
 
 ```
 
